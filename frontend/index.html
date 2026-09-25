@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartPrice - Price Comparison</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>SmartPrice</h1>
+        <p class="subtitle">Compare product prices across major e‑commerce platforms.</p>
+        <div class="search-box">
+            <input type="text" id="product-input" placeholder="Enter product name or URL" />
+            <button id="search-btn">Search</button>
+        </div>
+        <div id="results" class="results hidden">
+            <h2>Price Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Price</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body"></tbody>
+            </table>
+        </div>
+        <div id="message" class="message hidden"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
