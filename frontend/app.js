@@ -51,21 +51,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   searchBtn.addEventListener('click', async () => {
     const query = productInput.value.trim();
+
     if (!query) {
       showMessage('Please enter a product name or URL.', true);
       return;
     }
+
     clearResults();
     showMessage('Fetching prices…');
+
     try {
+      const payload = { product: query };
+
+      if (query.startsWith('http://') || query.startsWith('https://')) {
+        payload.url = query;
+      }
+
       const response = await fetch('http://127.0.0.1:5000/api/compare', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product: query }),
+        body: JSON.stringify(payload),
       });
-      if (!response.ok) throw new Error(`Server error ${response.status}`);
+
+      if (!response.ok) {
+        throw new Error(`Server error ${response.status}`);
+      }
+
       const data = await response.json();
       renderResults(data);
+
     } catch (err) {
       console.error(err);
       showMessage('Failed to fetch prices. See console for details.', true);
